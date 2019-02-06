@@ -18,7 +18,7 @@ using namespace std;
 int main()
 {
     // The below block is the code that I used to print out the elements of the series produced by the given problem.
-    // I used it with the following idea in mind: as u_n increases in value, u_n+1 would invariably decrease in value and
+    // I used it with the following idea in mind: as u_n increases in value, u_{n+1} would invariably decrease in value and
     // vice versa would hold at the point of decrease, since x^2 is always positive. So, it's likely that the sequence
     // passed by the problem is effectively an alternation of two different convergent sequences.
     //
@@ -33,11 +33,13 @@ int main()
     cout << "u0 =\t -1" << endl;
     for (int sequenceIndex = 1; sequenceIndex <= LIMIT; sequenceIndex++)
     {
-        newResult = floor( pow(2.0, 30.403243784 - pow(currentResult, 2.0)) ) * pow(10.0, -9.0);
+        newResult = floor( pow(2.0, 30.403243784 - pow(currentResult, 2.0)) ) * pow(10.0, -9.0); // u_n = f(u_{n-1})
         cout << "u" << sequenceIndex << " =\t" << newResult << endl;
 
         currentResult = newResult;
     }
+
+    newResult = floor(pow(2.0, 30.403243784 - pow(currentResult, 2.0))) * pow(10.0, -9.0);
 
     cout << endl << "..." << endl << endl;
 
@@ -49,6 +51,6 @@ int main()
     cout << "           12 " << endl;
     cout << "For n == 10  :" << endl << endl;
 
-    cout << "u    + u  = approx. " << (1.029461839 + 0.681175878) << endl; // The answer is 1.710637717.
+    cout << "u    + u  = approx. " << (currentResult + newResult) << endl; // The answer is ( should be ) 1.710637717.
     cout << " n+1    n " << endl;
 }
